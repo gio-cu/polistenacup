@@ -75,6 +75,10 @@
             z-index: 1000;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
+            min-height: 60px; /* Altezza minima per contenere il pulsante */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         nav ul {
@@ -100,6 +104,20 @@
         nav ul li a:hover, nav ul li a:focus {
             background-color: var(--accent-color);
             color: var(--bg-color);
+        }
+
+        .hamburger-menu {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 1001;
         }
 
         /* Contenuto Principale */
@@ -202,8 +220,30 @@
             .card h2 {
                 font-size: 2rem;
             }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            nav {
+                justify-content: flex-end; /* Sposta il contenuto (bottone) a destra */
+            }
+
             nav ul {
+                display: none; /* Nascondi il menu di default */
                 flex-direction: column;
+                position: absolute;
+                top: 100%; /* Posizionalo sotto la barra di navigazione */
+                left: 0;
+                width: 100%;
+                background-color: var(--card-bg-color);
+                padding: 0.5rem 0;
+                border-top: 1px solid var(--border-color);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            nav ul.active {
+                display: flex; /* Mostra il menu quando attivo */
             }
         }
     </style>
@@ -216,7 +256,10 @@
     </header>
 
     <nav>
-        <ul>
+        <button class="hamburger-menu" id="hamburger-toggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul id="nav-list">
             <li><a href="#regole-base">Regole Base</a></li>
             <li><a href="#premi-pagamenti">Premi & Pagamenti</a></li>
             <li><a href="#rose-contratti">Rose & Contratti</a></li>
@@ -339,5 +382,34 @@
         <p>PolistenaCup | Regolamento Ufficiale</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-toggle');
+            const navList = document.getElementById('nav-list');
+            const navLinks = document.querySelectorAll('#nav-list li a');
+
+            // Apri/chiudi il menu al click sul pulsante
+            hamburger.addEventListener('click', (event) => {
+                navList.classList.toggle('active');
+                event.stopPropagation();
+            });
+
+            // Chiudi il menu se si clicca su un link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                       navList.classList.remove('active');
+                    }
+                });
+            });
+
+            // Chiudi il menu se si clicca fuori
+            document.addEventListener('click', (event) => {
+                 if (!navList.contains(event.target) && !hamburger.contains(event.target) && navList.classList.contains('active')) {
+                    navList.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
