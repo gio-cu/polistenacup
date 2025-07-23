@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolistenaCup - Regolamento Ufficiale</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏆</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <style>
+        :root {
+            --primary-color: #58A6FF;   /* Blu tenue primario */
+            --secondary-color: #161B22; /* Sfondo scuro (quasi nero-blu) */
+            --accent-color: #58A6FF;    /* Blu tenue per accenti e link */
+            --text-color: #E6EDF3;      /* Testo chiaro (quasi bianco) */
+            --bg-color: #161B22;        /* Sfondo principale */
+            --card-bg-color: #1C2128;   /* Sfondo delle card (leggermente più chiaro) */
+            --border-color: #30363d;    /* Colore per i bordi */
+        }
+
+        /* Impostazioni base */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(rgba(28, 33, 40, 0.85), rgba(22, 27, 34, 0.95)), url('https://placehold.co/1200x400/161B22/58A6FF?text=PolistenaCup') no-repeat center center/cover;
+            color: #ffffff;
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* Barra di Navigazione */
+        nav {
+            background-color: rgba(28, 33, 40, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: block;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Contenuto Principale */
+        main {
+            padding: 1rem;
+            max-width: 960px;
+            margin: 2rem auto;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-left: 5px solid var(--accent-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 .icon {
+            margin-right: 15px;
+            font-size: 2.2rem;
+        }
+
+        .card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Stile delle liste */
+        .card ul {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .card li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '\f00c'; /* Check icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+
+        strong {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .example-text {
+            font-style: italic;
+            color: #8b949e;
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg-color);
+            color: #8b949e;
+            margin-top: 3rem;
+            border-top: 3px solid var(--border-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .card h2 {
+                font-size: 2rem;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏆 PolistenaCup 🏆</h1>
+        <p>Il Regolamento Ufficiale della Lega</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#regole-base">Regole Base</a></li>
+            <li><a href="#premi-pagamenti">Premi & Pagamenti</a></li>
+            <li><a href="#rose-contratti">Rose & Contratti</a></li>
+            <li><a href="#mercato">Mercato</a></li>
+            <li><a href="#coppe">Coppe</a></li>
+            <li><a href="#stadio">Stadio</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="regole-base" class="card">
+            <h2><i class="fas fa-scroll icon"></i>Regole Base</h2>
+            <ul>
+                <li><strong>Piattaforma:</strong> La lega si appoggia su <strong>Fantacalcio.it</strong> con sistema <strong>Mantra</strong>.</li>
+                <li><strong>Voti e Bonus:</strong> Si utilizzano i voti della redazione di Fantacalcio.it. L'unica eccezione è la revisione manuale per eventuali "ammonizioni fantasma".</li>
+                <li><strong>Modalità Campionato:</strong> Scontri diretti. 3 punti per la vittoria, 1 per il pareggio, 0 per la sconfitta.</li>
+                <li><strong>Crediti Iniziali:</strong> Ad inizio stagione, ogni squadra riceve <strong>350 crediti</strong>, che si sommano al tesoretto residuo della stagione precedente.</li>
+                <li><strong>Criteri Classifica:</strong> In caso di parità di punti, l'ordine è: 1) Punti totali, 2) Scontri diretti, 3) Differenza reti.</li>
+                <li><strong>Penalità di Classifica:</strong> <strong>20€</strong> di multa per il penultimo classificato e <strong>30€</strong> per l'ultimo.</li>
+                <li><strong>Sostituzioni:</strong> Massimo <strong>5 sostituzioni</strong> in modalità BASIC.</li>
+                <li><strong>Partite Rinviate:</strong> I punteggi vengono calcolati al momento del recupero. Se un titolare (e le sue riserve) non gioca il recupero, ottiene un <strong>6 d'ufficio</strong>.</li>
+            </ul>
+        </div>
+
+        <div id="premi-pagamenti" class="card">
+            <h2><i class="fas fa-coins icon"></i>Premi & Pagamenti</h2>
+            <h3>Quote e Montepremi</h3>
+            <ul>
+                <li><strong>Iscrizione Annuale:</strong> <strong>150,00€</strong> per squadra. A questa cifra si aggiungono i costi per trasferimenti extra e pacchetti crediti.</li>
+                <li><strong>Montepremi Campionato (1500€):</strong>
+                    <ul>
+                        <li>Primo Posto: <strong>750€</strong></li>
+                        <li>Secondo Posto: <strong>350€</strong></li>
+                        <li>Terzo Posto: <strong>150€</strong></li>
+                        <li>Quarto Posto (o vincitore Play-Off): <strong>50€</strong></li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>Premi Coppa e Crediti</h3>
+            <ul>
+                 <li><strong>Vincitore Coppa Calabria:</strong> Incasso dei trasferimenti a pagamento + pacchetti acquistati (fino a un massimo di <strong>350€</strong>).</li>
+                <li><strong>Secondo Posto Coppa Calabria:</strong> Premio fino a un massimo di <strong>200€</strong>. Le percentuali sono 65% al primo e 35% al secondo.</li>
+                <li><strong>Vincitore Supercoppa di Lega:</strong> Premio di <strong>20 crediti</strong>.</li>
+                <li><strong>Mancata Formazione (Ultime 10 Giornate):</strong> Penalizzazione di <strong>10 crediti</strong>.</li>
+                <li><strong>Mancata Formazione (3 volte consecutive):</strong> Si valuta l'<strong>espulsione immediata</strong> dalla lega.</li>
+            </ul>
+        </div>
+
+        <div id="rose-contratti" class="card">
+            <h2><i class="fas fa-users icon"></i>Rose & Contratti</h2>
+            <h3>Asta Iniziale</h3>
+            <ul>
+                <li><strong>Creazione Rose:</strong> Avviene tramite un'asta (in persona o da remoto).</li>
+                <li><strong>Asta da Remoto:</strong> Offerte su <strong>FantaLab</strong>, comunicazione tramite <strong>Skype</strong>.</li>
+                <li><strong>Composizione Rosa:</strong> Da <strong>25 a 33 calciatori</strong>, con un minimo di <strong>3 portieri</strong>.</li>
+                <li><strong>Offerta Minima:</strong> 1 credito per ogni calciatore.</li>
+            </ul>
+            <h3>Conferme e Contratti</h3>
+            <ul>
+                <li><strong>Contratti Annuali:</strong> Stipulati per Attaccanti (ruolo Classic) pagati <strong>più di 80 crediti</strong> e per altri ruoli pagati <strong>più di 40 crediti</strong>.</li>
+                <li><strong>Contratti Biennali:</strong> Stipulati per giocatori pagati una cifra uguale o inferiore alle soglie sopra indicate.</li>
+                <li><strong>Conferme Pre-Asta:</strong> Ogni squadra può confermare al massimo <strong>6 giocatori di movimento</strong> OPPURE <strong>1 portiere + 4 giocatori di movimento</strong>.</li>
+                <li><strong>Limiti Ruoli Conferme:</strong> Massimo 1 difensore, 2 centrocampisti, 1 attaccante (ruoli Classic).</li>
+                <li><strong>Costo Conferma:</strong> Il valore d'acquisto di un giocatore biennale aumenta del <strong>20% ogni anno (arrotondato per eccesso)</strong>. <span class="example-text">Es: Nakamura, comprato a 20, viene confermato a 24.</span></li>
+            </ul>
+        </div>
+
+        <div id="mercato" class="card">
+            <h2><i class="fas fa-exchange-alt icon"></i>Mercato</h2>
+            <h3>Sessioni di Mercato</h3>
+            <ul>
+                <li><strong>6 sessioni totali:</strong> Asta a Settembre, 5 sessioni a busta chiusa (Set-Gen), Asta finale a Febbraio.</li>
+                <li><strong>Asta di Febbraio:</strong> Offerte visibili a tutti con countdown di 10 minuti che si resetta a ogni nuova offerta per lo stesso giocatore.</li>
+                <li><strong>Piattaforma:</strong> Tutte le sessioni si svolgono su <strong>Fantacalcio.it</strong>.</li>
+            </ul>
+            <h3>Regole Trasferimenti</h3>
+            <ul>
+                <li><strong>Costo Trasferimenti:</strong> I primi <strong>5 cambi sono gratuiti</strong>, i successivi costano <strong>1€ l'uno</strong>.</li>
+                <li><strong>Regola dell'Ex:</strong> Un giocatore ceduto non può essere riacquistato dalla stessa squadra nella stagione in corso.</li>
+                <li><strong>Svincoli:</strong> È possibile svincolare un giocatore ottenendo un rimborso del <strong>50% del suo valore d'acquisto</strong>.</li>
+            </ul>
+            <h3>Mercato Estivo e Opzioni</h3>
+            <ul>
+                <li><strong>Mercato Estivo:</strong> Gestito tramite <strong>Google Spreadsheet</strong> condiviso.</li>
+                <li><strong>Pacchetti Crediti Estivi:</strong> Acquistabili pacchetti da <strong>50 crediti per 50€</strong>, non cumulabili e da spendere obbligatoriamente prima dell'asta.</li>
+                <li><strong>Opzioni Serie B (entro 30/09):</strong> Si possono opzionare fino a 5 giocatori pagando subito il 50% della loro quotazione.</li>
+                <li><strong>Opzioni Euroleghe (entro 30/11):</strong> Si possono opzionare fino a 5 giocatori pagando subito il 50% della loro quotazione dal listone Euroleghe.</li>
+            </ul>
+        </div>
+
+        <div id="coppe" class="card">
+            <h2><i class="fas fa-trophy icon"></i>Coppe & Tornei</h2>
+            <h3>Coppa Calabria</h3>
+            <ul>
+                <li><strong>Durata:</strong> Dalla 11ª alla 37ª giornata.</li>
+                <li><strong>Struttura:</strong> Spareggi preliminari, fase a gironi (12 turni), fase a eliminazione diretta (semifinali e finale su 4 turni).</li>
+            </ul>
+            <h3>Supercoppa di Lega</h3>
+            <ul>
+                <li><strong>Partecipanti:</strong> Campione in carica vs Vincitore Coppa Calabria.</li>
+                <li><strong>Svolgimento:</strong> Andata (8ª giornata) e ritorno (9ª giornata).</li>
+                <li><strong>Premio:</strong> <strong>20 crediti</strong> al vincitore.</li>
+            </ul>
+            <h3>Playoff Quarto Posto</h3>
+            <ul>
+                <li><strong>Durata:</strong> Dalla 35ª all'ultima giornata.</li>
+                <li><strong>Premio:</strong> Il vincitore si aggiudica il premio del 4° posto, anche se si classifica peggio. Se si classifica meglio, ottiene il premio della sua posizione effettiva e il 4° posto va alla squadra che occupa quella posizione in classifica.</li>
+            </ul>
+        </div>
+
+        <div id="stadio" class="card">
+            <h2><i class="fas fa-futbol icon"></i>Stadio</h2>
+            <ul>
+                <li>Al momento non sono previsti cambi di regolamento su questo argomento.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>PolistenaCup | Regolamento Ufficiale</p>
+    </footer>
+
+</body>
+</html>
