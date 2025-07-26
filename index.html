@@ -13,22 +13,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 
     <style>
         :root {
-            --primary-color: #58A6FF;   /* Blu tenue primario */
-            --secondary-color: #161B22; /* Sfondo scuro (quasi nero-blu) */
-            --accent-color: #58A6FF;    /* Blu tenue per accenti e link */
-            --text-color: #E6EDF3;      /* Testo chiaro (quasi bianco) */
-            --bg-color: #161B22;        /* Sfondo principale */
-            --card-bg-color: #1C2128;   /* Sfondo delle card (leggermente più chiaro) */
-            --border-color: #30363d;    /* Colore per i bordi */
+            --primary-color: #58A6FF;
+            --secondary-color: #161B22;
+            --accent-color: #58A6FF;
+            --text-color: #E6EDF3;
+            --bg-color: #161B22;
+            --card-bg-color: #1C2128;
+            --border-color: #30363d;
         }
 
-        /* Impostazioni base */
         html {
             scroll-behavior: smooth;
         }
@@ -75,7 +72,7 @@
             z-index: 1000;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
-            min-height: 60px; /* Altezza minima per contenere il pulsante */
+            min-height: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,6 +87,10 @@
             flex-wrap: wrap;
         }
 
+        nav ul li {
+            position: relative;
+        }
+
         nav ul li a {
             color: #ffffff;
             text-decoration: none;
@@ -101,7 +102,37 @@
             display: block;
         }
 
-        nav ul li a:hover, nav ul li a:focus {
+        nav ul li a:hover, nav ul li a:focus, nav ul li a.active {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Dropdown Menu */
+        nav ul li ul.dropdown {
+            display: none;
+            position: absolute;
+            background-color: var(--card-bg-color);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            padding: 0.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        nav ul li:hover ul.dropdown {
+            display: block;
+        }
+
+        nav ul li ul.dropdown li a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        nav ul li ul.dropdown li a:hover {
             background-color: var(--accent-color);
             color: var(--bg-color);
         }
@@ -112,10 +143,6 @@
             border: none;
             color: var(--text-color);
             font-size: 1.8rem;
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
             cursor: pointer;
             z-index: 1001;
         }
@@ -127,7 +154,7 @@
             margin: 2rem auto;
         }
 
-        .card {
+        section.card {
             background-color: var(--card-bg-color);
             margin-bottom: 2rem;
             padding: 2rem;
@@ -137,12 +164,12 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .card:hover {
+        section.card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 24px rgba(0,0,0,0.3);
         }
 
-        .card h2 {
+        section.card h2 {
             font-family: 'Oswald', sans-serif;
             font-size: 2.5rem;
             color: var(--accent-color);
@@ -152,12 +179,12 @@
             margin-bottom: 1.5rem;
         }
 
-        .card h2 .icon {
+        section.card h2 .icon {
             margin-right: 15px;
             font-size: 2.2rem;
         }
 
-        .card h3 {
+        section.card h3 {
             font-family: 'Oswald', sans-serif;
             font-size: 1.6rem;
             color: #fff;
@@ -168,18 +195,18 @@
         }
 
         /* Stile delle liste */
-        .card ul {
+        section.card ul {
             padding-left: 20px;
             list-style-type: none;
         }
 
-        .card li {
+        section.card li {
             margin-bottom: 1rem;
             padding-left: 1.5rem;
             position: relative;
         }
 
-        .card li::before {
+        section.card li::before {
             content: '\f00c'; /* Check icon */
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
@@ -217,23 +244,27 @@
             header h1 {
                 font-size: 2.5rem;
             }
-            .card h2 {
+            section.card h2 {
                 font-size: 2rem;
             }
 
             .hamburger-menu {
                 display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 50%;
+                transform: translateY(-50%);
             }
 
             nav {
-                justify-content: flex-end; /* Sposta il contenuto (bottone) a destra */
+                justify-content: flex-end;
             }
 
-            nav ul {
-                display: none; /* Nascondi il menu di default */
+            nav ul#main-nav {
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 100%; /* Posizionalo sotto la barra di navigazione */
+                top: 100%;
                 left: 0;
                 width: 100%;
                 background-color: var(--card-bg-color);
@@ -242,8 +273,21 @@
                 box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             }
 
-            nav ul.active {
-                display: flex; /* Mostra il menu quando attivo */
+            nav ul#main-nav.active {
+                display: flex;
+            }
+
+            nav ul li:hover ul.dropdown {
+                display: none; /* Disabilita dropdown su hover */
+            }
+
+            nav ul li .dropdown-toggle:focus + ul.dropdown,
+            nav ul li ul.dropdown.open {
+                display: block;
+                position: static;
+                box-shadow: none;
+                border: none;
+                padding-left: 1rem;
             }
         }
     </style>
@@ -259,18 +303,24 @@
         <button class="hamburger-menu" id="hamburger-toggle" aria-label="Menu">
             <i class="fas fa-bars"></i>
         </button>
-        <ul id="nav-list">
-            <li><a href="#regole-base">Regole Base</a></li>
-            <li><a href="#premi-pagamenti">Premi & Pagamenti</a></li>
-            <li><a href="#rose-contratti">Rose & Contratti</a></li>
-            <li><a href="#mercato">Mercato</a></li>
-            <li><a href="#coppe">Coppe</a></li>
-            <li><a href="#stadio">Stadio</a></li>
+        <ul id="main-nav">
+            <li>
+                <a href="index.html" class="dropdown-toggle">Regolamento <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#regole-base">Regole Base</a></li>
+                    <li><a href="#premi-pagamenti">Premi & Pagamenti</a></li>
+                    <li><a href="#rose-contratti">Rose & Contratti</a></li>
+                    <li><a href="#mercato">Mercato</a></li>
+                    <li><a href="#coppe">Coppe</a></li>
+                    <li><a href="#stadio">Stadio</a></li>
+                </ul>
+            </li>
+            <li><a href="rose_vecchie.html">Rose 24/25</a></li>
         </ul>
     </nav>
 
     <main>
-        <div id="regole-base" class="card">
+        <section id="regole-base" class="card">
             <h2><i class="fas fa-scroll icon"></i>Regole Base</h2>
             <ul>
                 <li><strong>Piattaforma:</strong> La lega si appoggia su <strong>Fantacalcio.it</strong> con sistema <strong>Mantra</strong>.</li>
@@ -282,9 +332,9 @@
                 <li><strong>Sostituzioni:</strong> Massimo <strong>5 sostituzioni</strong> in modalità BASIC.</li>
                 <li><strong>Partite Rinviate:</strong> I punteggi vengono calcolati al momento del recupero. Se un titolare (e le sue riserve) non gioca il recupero, ottiene un <strong>6 d'ufficio</strong>.</li>
             </ul>
-        </div>
+        </section>
 
-        <div id="premi-pagamenti" class="card">
+        <section id="premi-pagamenti" class="card">
             <h2><i class="fas fa-coins icon"></i>Premi & Pagamenti</h2>
             <h3>Quote e Montepremi</h3>
             <ul>
@@ -306,9 +356,9 @@
                 <li><strong>Mancata Formazione (Ultime 10 Giornate):</strong> Penalizzazione di <strong>10 crediti</strong>.</li>
                 <li><strong>Mancata Formazione (3 volte consecutive):</strong> Si valuta l'<strong>espulsione immediata</strong> dalla lega.</li>
             </ul>
-        </div>
+        </section>
 
-        <div id="rose-contratti" class="card">
+        <section id="rose-contratti" class="card">
             <h2><i class="fas fa-users icon"></i>Rose & Contratti</h2>
             <h3>Asta Iniziale</h3>
             <ul>
@@ -319,15 +369,15 @@
             </ul>
             <h3>Conferme e Contratti</h3>
             <ul>
-                <li><strong>Contratti Annuali:</strong> Stipulati per Attaccanti (ruolo Classic) pagati <strong>più di 80 crediti</strong> e per altri ruoli pagati <strong>più di 40 crediti</strong>.</li>
+                <li><strong>Contratti Annuali:</strong> Stipulati per Attaccanti (ruoli PC e A) pagati <strong>più di 80 crediti</strong> e per altri ruoli pagati <strong>più di 40 crediti</strong>.</li>
                 <li><strong>Contratti Biennali:</strong> Stipulati per giocatori pagati una cifra uguale o inferiore alle soglie sopra indicate.</li>
                 <li><strong>Conferme Pre-Asta:</strong> Ogni squadra può confermare al massimo <strong>6 giocatori di movimento</strong> OPPURE <strong>1 portiere + 4 giocatori di movimento</strong>.</li>
-                <li><strong>Limiti Ruoli Conferme:</strong> Massimo 1 difensore, 2 centrocampisti, 1 attaccante (ruoli Classic).</li>
+                <li><strong>Limiti Ruoli Conferme:</strong> Massimo 1 calciatore per ruolo Mantra ad eccezione del ruolo C (max 2 calciatori)</li>
                 <li><strong>Costo Conferma:</strong> Il valore d'acquisto di un giocatore biennale aumenta del <strong>20% ogni anno (arrotondato per eccesso)</strong>. <span class="example-text">Es: Nakamura, comprato a 20, viene confermato a 24.</span></li>
             </ul>
-        </div>
+        </section>
 
-        <div id="mercato" class="card">
+        <section id="mercato" class="card">
             <h2><i class="fas fa-exchange-alt icon"></i>Mercato</h2>
             <h3>Sessioni di Mercato</h3>
             <ul>
@@ -348,9 +398,9 @@
                 <li><strong>Opzioni Serie B (entro 30/09):</strong> Si possono opzionare fino a 5 giocatori pagando subito il 50% della loro quotazione.</li>
                 <li><strong>Opzioni Euroleghe (entro 30/11):</strong> Si possono opzionare fino a 5 giocatori pagando subito il 50% della loro quotazione dal listone Euroleghe.</li>
             </ul>
-        </div>
+        </section>
 
-        <div id="coppe" class="card">
+        <section id="coppe" class="card">
             <h2><i class="fas fa-trophy icon"></i>Coppe & Tornei</h2>
             <h3>Coppa Calabria</h3>
             <ul>
@@ -368,14 +418,14 @@
                 <li><strong>Durata:</strong> Dalla 35ª all'ultima giornata.</li>
                 <li><strong>Premio:</strong> Il vincitore si aggiudica il premio del 4° posto, anche se si classifica peggio. Se si classifica meglio, ottiene il premio della sua posizione effettiva e il 4° posto va alla squadra che occupa quella posizione in classifica.</li>
             </ul>
-        </div>
+        </section>
 
-        <div id="stadio" class="card">
+        <section id="stadio" class="card">
             <h2><i class="fas fa-futbol icon"></i>Stadio</h2>
             <ul>
                 <li>Al momento non sono previsti cambi di regolamento su questo argomento.</li>
             </ul>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -385,29 +435,56 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger-toggle');
-            const navList = document.getElementById('nav-list');
-            const navLinks = document.querySelectorAll('#nav-list li a');
+            const mainNav = document.getElementById('main-nav');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-            // Apri/chiudi il menu al click sul pulsante
+            // Toggle hamburger menu
             hamburger.addEventListener('click', (event) => {
-                navList.classList.toggle('active');
+                mainNav.classList.toggle('active');
                 event.stopPropagation();
             });
 
-            // Chiudi il menu se si clicca su un link
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
+            // Handle dropdowns on mobile
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (event) => {
                     if (window.innerWidth <= 768) {
-                       navList.classList.remove('active');
+                        event.preventDefault();
+                        const dropdown = toggle.nextElementSibling;
+                        dropdown.classList.toggle('open');
+                        event.stopPropagation();
                     }
                 });
             });
 
-            // Chiudi il menu se si clicca fuori
+            // Close menus when clicking outside
             document.addEventListener('click', (event) => {
-                 if (!navList.contains(event.target) && !hamburger.contains(event.target) && navList.classList.contains('active')) {
-                    navList.classList.remove('active');
+                if (!mainNav.contains(event.target) && !hamburger.contains(event.target)) {
+                    mainNav.classList.remove('active');
+                    document.querySelectorAll('.dropdown.open').forEach(dropdown => {
+                        dropdown.classList.remove('open');
+                    });
                 }
+            });
+
+            // Active link scrolling
+            const sections = document.querySelectorAll('section.card');
+            const navLinks = document.querySelectorAll('nav ul li ul.dropdown li a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').substring(1) === current) {
+                        a.classList.add('active');
+                    }
+                });
             });
         });
     </script>
