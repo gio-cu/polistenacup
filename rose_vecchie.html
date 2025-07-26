@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolistenaCup - Rose Ufficiali 24/25</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏆</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #58A6FF;
+            --secondary-color: #161B22;
+            --accent-color: #58A6FF;
+            --text-color: #E6EDF3;
+            --bg-color: #161B22;
+            --card-bg-color: #1C2128;
+            --border-color: #30363d;
+            --highlight-red: #ff8a80; /* Colore per le righe evidenziate */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(rgba(28, 33, 40, 0.85), rgba(22, 27, 34, 0.95)), url('https://placehold.co/1200x400/161B22/58A6FF?text=Rose+24/25') no-repeat center center/cover;
+            color: #ffffff;
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* Navigazione */
+        nav {
+            background-color: rgba(28, 33, 40, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            min-height: 60px; /* Altezza minima per contenere il pulsante */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: block;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Dropdown Menu */
+        nav ul li ul.dropdown {
+            display: none;
+            position: absolute;
+            background-color: var(--card-bg-color);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            padding: 0.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        nav ul li:hover ul.dropdown {
+            display: block;
+        }
+
+        nav ul li ul.dropdown li a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        nav ul li ul.dropdown li a:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .hamburger-menu {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Contenuto principale */
+        main {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-left: 5px solid var(--accent-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-card h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .team-card .credits {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            text-align: right;
+            margin-top: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .roster-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+
+        .roster-table th, .roster-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .roster-table thead th {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1em;
+            color: var(--accent-color);
+        }
+
+        .roster-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .roster-table tbody tr:hover {
+            background-color: #2c333c;
+        }
+
+        .roster-table tr.highlight-red td {
+            color: var(--highlight-red);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg-color);
+            color: #8b949e;
+            margin-top: 3rem;
+            border-top: 3px solid var(--border-color);
+        }
+
+        @media (max-width: 980px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            nav {
+                justify-content: flex-end;
+            }
+
+            nav ul#main-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-bg-color);
+                padding: 0.5rem 0;
+                border-top: 1px solid var(--border-color);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            nav ul#main-nav.active {
+                display: flex;
+            }
+
+            nav ul li:hover ul.dropdown {
+                display: none; /* Disabilita dropdown su hover */
+            }
+
+            nav ul li .dropdown-toggle:focus + ul.dropdown,
+            nav ul li ul.dropdown.open {
+                display: block;
+                position: static;
+                box-shadow: none;
+                border: none;
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏆 PolistenaCup 🏆</h1>
+        <p>Rose Ufficiali della Lega 24/25</p>
+    </header>
+
+    <nav>
+        <button class="hamburger-menu" id="hamburger-toggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul id="main-nav">
+            <li>
+                <a href="index.html" class="dropdown-toggle">Regolamento <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="index.html#regole-base">Regole Base</a></li>
+                    <li><a href="index.html#premi-pagamenti">Premi & Pagamenti</a></li>
+                    <li><a href="index.html#rose-contratti">Rose & Contratti</a></li>
+                    <li><a href="index.html#mercato">Mercato</a></li>
+                    <li><a href="index.html#coppe">Coppe</a></li>
+                    <li><a href="index.html#stadio">Stadio</a></li>
+                </ul>
+            </li>
+            <li><a href="rose_vecchie.html" class="active">Rose 24/25</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="team-grid">
+
+            <div class="team-card">
+                <h2>Longobarda</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Silvestri</td><td>Emp</td><td>2</td></tr>
+                        <tr><td>Por</td><td>Montipo'</td><td>Ver</td><td>6</td></tr>
+                        <tr><td>Por</td><td>Di Gregorio</td><td>Juv</td><td>17</td></tr>
+                        <tr><td>Dc</td><td>Djimsiti</td><td>Ata</td><td>8</td></tr>
+                        <tr><td>Dd;Ds;E</td><td>Sabelli</td><td>Gen</td><td>8</td></tr>
+                        <tr><td>E</td><td>Spinazzola</td><td>Nap</td><td>30</td></tr>
+                        <tr><td>Dc</td><td>Bremer</td><td>Juv</td><td>8</td></tr>
+                        <tr class="highlight-red"><td>E</td><td>Ruggeri</td><td>Ata</td><td>7</td></tr>
+                        <tr><td>B;Dd;Ds</td><td>Guilbert</td><td>Lec</td><td>4</td></tr>
+                        <tr><td>Dc</td><td>Gatti</td><td>Juv</td><td>14</td></tr>
+                        <tr><td>Dc</td><td>Gila</td><td>Laz</td><td>13</td></tr>
+                        <tr><td>B;Ds;E</td><td>Olivera</td><td>Nap</td><td>8</td></tr>
+                        <tr><td>Dc</td><td>Thiaw</td><td>Mil</td><td>6</td></tr>
+                        <tr><td>Dd;Dc</td><td>Schingtienne</td><td>Ven</td><td>4</td></tr>
+                        <tr><td>Dc</td><td>Solet</td><td>Udi</td><td>6</td></tr>
+                        <tr class="highlight-red"><td>W</td><td>Politano</td><td>Nap</td><td>24</td></tr>
+                        <tr><td>C</td><td>Barella</td><td>Int</td><td>20</td></tr>
+                        <tr><td>C;T</td><td>Loftus-Cheek</td><td>Mil</td><td>40</td></tr>
+                        <tr><td>M;C</td><td>Zambo Anguissa</td><td>Nap</td><td>33</td></tr>
+                        <tr><td>M;C</td><td>Duda</td><td>Ver</td><td>7</td></tr>
+                        <tr><td>T</td><td>Samardzic</td><td>Ata</td><td>16</td></tr>
+                        <tr><td>T;A</td><td>Pafundi</td><td>Udi</td><td>1</td></tr>
+                        <tr><td>M;C</td><td>Perrone</td><td>Com</td><td>7</td></tr>
+                        <tr class="highlight-red"><td>C;T</td><td>Folorunsho</td><td>Fio</td><td>3</td></tr>
+                        <tr><td>A</td><td>Odgaard</td><td>Bol</td><td>13</td></tr>
+                        <tr><td>Pc</td><td>Shomurodov</td><td>Rom</td><td>13</td></tr>
+                        <tr><td>A</td><td>De Ketelaere</td><td>Ata</td><td>42</td></tr>
+                        <tr><td>Pc</td><td>Lucca</td><td>Udi</td><td>41</td></tr>
+                        <tr><td>Pc</td><td>Dovbyk</td><td>Rom</td><td>142</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 253</p>
+            </div>
+
+            <div class="team-card">
+                <h2>Segname decisamente Meno</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Leali</td><td>Gen</td><td>1</td></tr>
+                        <tr class="highlight-red"><td>Por</td><td>Perin</td><td>Juv</td><td>2</td></tr>
+                        <tr><td>Por</td><td>Sommariva</td><td>Gen</td><td>1</td></tr>
+                        <tr><td>Dc</td><td>Mina</td><td>Cag</td><td>11</td></tr>
+                        <tr><td>Ds;E</td><td>Miranda J.</td><td>Bol</td><td>12</td></tr>
+                        <tr><td>Dd;E</td><td>Zanoli</td><td>Gen</td><td>6</td></tr>
+                        <tr><td>Dd;Dc</td><td>Baschirotto</td><td>Lec</td><td>2</td></tr>
+                        <tr><td>Dc</td><td>Hien</td><td>Ata</td><td>9</td></tr>
+                        <tr><td>Ds;E</td><td>Zemura</td><td>Udi</td><td>19</td></tr>
+                        <tr><td>Dc</td><td>Kristensen T.</td><td>Udi</td><td>5</td></tr>
+                        <tr><td>Dd;E</td><td>Sangare' B.</td><td>Rom</td><td>1</td></tr>
+                        <tr><td>Ds;Dc</td><td>Kelly L.</td><td>Juv</td><td>7</td></tr>
+                        <tr><td>B;Dd;E</td><td>Rensch</td><td>Rom</td><td>8</td></tr>
+                        <tr><td>M;C</td><td>Nicolussi Caviglia</td><td>Ven</td><td>2</td></tr>
+                        <tr><td>C</td><td>Douglas Luiz</td><td>Juv</td><td>44</td></tr>
+                        <tr class="highlight-red"><td>M;C</td><td>Ricci S.</td><td>Tor</td><td>21</td></tr>
+                        <tr><td>M;C</td><td>Kone' M.</td><td>Rom</td><td>28</td></tr>
+                        <tr><td>W;A</td><td>Karlsson</td><td>Lec</td><td>8</td></tr>
+                        <tr><td>T</td><td>Adzic</td><td>Juv</td><td>3</td></tr>
+                        <tr><td>W;A</td><td>Neres</td><td>Nap</td><td>24</td></tr>
+                        <tr><td>M;C</td><td>Kasa</td><td>Gen</td><td>1</td></tr>
+                        <tr class="highlight-red"><td>A</td><td>Gonzalez N.</td><td>Juv</td><td>49</td></tr>
+                        <tr><td>A</td><td>Joao Felix</td><td>Mil</td><td>42</td></tr>
+                        <tr><td>Pc</td><td>Kolo Muani</td><td>Juv</td><td>56</td></tr>
+                        <tr><td>Pc</td><td>Gimenez</td><td>Mil</td><td>101</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 117</p>
+            </div>
+
+            <div class="team-card">
+                <h2>Rumbuli Team</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Gollini</td><td>Rom</td><td>10</td></tr>
+                        <tr class="highlight-red"><td>Por</td><td>Svilar</td><td>Rom</td><td>1</td></tr>
+                        <tr><td>Por</td><td>Marin Re.</td><td>Rom</td><td>1</td></tr>
+                        <tr><td>B;Ds;E</td><td>Biraghi</td><td>Tor</td><td>5</td></tr>
+                        <tr><td>E</td><td>Cuadrado</td><td>Ata</td><td>4</td></tr>
+                        <tr><td>Ds;E</td><td>Pezzella Giu.</td><td>Emp</td><td>12</td></tr>
+                        <tr><td>B;Dd;E</td><td>Walker</td><td>Mil</td><td>11</td></tr>
+                        <tr class="highlight-red"><td>B;Dd;E</td><td>Di Lorenzo</td><td>Nap</td><td>15</td></tr>
+                        <tr><td>Dd;Dc</td><td>Pavard</td><td>Int</td><td>33</td></tr>
+                        <tr class="highlight-red"><td>Dc</td><td>Rrahmani</td><td>Nap</td><td>16</td></tr>
+                        <tr><td>Dc</td><td>Mari'</td><td>Fio</td><td>6</td></tr>
+                        <tr><td>Ds;Dc</td><td>Vasquez</td><td>Gen</td><td>19</td></tr>
+                        <tr><td>Dc</td><td>Comuzzo</td><td>Fio</td><td>3</td></tr>
+                        <tr><td>W;A</td><td>Zaccagni</td><td>Laz</td><td>23</td></tr>
+                        <tr><td>M;C</td><td>Locatelli</td><td>Juv</td><td>22</td></tr>
+                        <tr><td>T</td><td>Alli</td><td>Com</td><td>1</td></tr>
+                        <tr><td>M;C</td><td>Lobotka</td><td>Nap</td><td>31</td></tr>
+                        <tr class="highlight-red"><td>C;T</td><td>Castrovilli</td><td>Mon</td><td>1</td></tr>
+                        <tr><td>C</td><td>Hernani</td><td>Par</td><td>5</td></tr>
+                        <tr><td>T;A</td><td>Baldanzi</td><td>Rom</td><td>14</td></tr>
+                        <tr><td>C</td><td>Lovric</td><td>Udi</td><td>10</td></tr>
+                        <tr><td>C</td><td>Reijnders</td><td>Mil</td><td>30</td></tr>
+                        <tr><td>W;T</td><td>Anjorin</td><td>Emp</td><td>6</td></tr>
+                        <tr><td>Pc</td><td>Kean</td><td>Fio</td><td>83</td></tr>
+                        <tr><td>A</td><td>Sanchez</td><td>Udi</td><td>35</td></tr>
+                        <tr><td>A</td><td>Raspadori</td><td>Nap</td><td>12</td></tr>
+                        <tr><td>A</td><td>Leao</td><td>Mil</td><td>21</td></tr>
+                        <tr><td>Pc</td><td>Krstovic</td><td>Lec</td><td>14</td></tr>
+                        <tr><td>Pc</td><td>Camarda</td><td>Mil</td><td>4</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 141</p>
+            </div>
+
+            <div class="team-card">
+                <h2>All Blacks</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Rossi F.</td><td>Ata</td><td>1</td></tr>
+                        <tr><td>Por</td><td>Rui Patricio</td><td>Ata</td><td>1</td></tr>
+                        <tr><td>Por</td><td>Carnesecchi</td><td>Ata</td><td>13</td></tr>
+                        <tr><td>E</td><td>Dimarco</td><td>Int</td><td>23</td></tr>
+                        <tr><td>Dc</td><td>Luperto</td><td>Cag</td><td>8</td></tr>
+                        <tr><td>Dc</td><td>Romagnoli</td><td>Laz</td><td>19</td></tr>
+                        <tr><td>Dc</td><td>Hummels</td><td>Rom</td><td>10</td></tr>
+                        <tr><td>B;Dd;E</td><td>Zappa</td><td>Cag</td><td>11</td></tr>
+                        <tr><td>Ds;E</td><td>Valeri</td><td>Par</td><td>6</td></tr>
+                        <tr><td>Dd;Dc</td><td>Posch</td><td>Ata</td><td>12</td></tr>
+                        <tr><td>Dc</td><td>Gaspar K.</td><td>Lec</td><td>6</td></tr>
+                        <tr><td>Dc</td><td>Idzes</td><td>Ven</td><td>5</td></tr>
+                        <tr><td>Ds;E</td><td>Valle</td><td>Com</td><td>5</td></tr>
+                        <tr class="highlight-red"><td>W</td><td>Orsolini</td><td>Bol</td><td>14</td></tr>
+                        <tr><td>C</td><td>Thorsby</td><td>Gen</td><td>6</td></tr>
+                        <tr><td>C;T</td><td>Fagioli</td><td>Fio</td><td>6</td></tr>
+                        <tr><td>T</td><td>Koopmeiners</td><td>Juv</td><td>22</td></tr>
+                        <tr class="highlight-red"><td>M;C</td><td>Ederson D.s.</td><td>Ata</td><td>12</td></tr>
+                        <tr><td>C;T</td><td>Ferguson</td><td>Bol</td><td>21</td></tr>
+                        <tr><td>E;W</td><td>Zerbin</td><td>Ven</td><td>1</td></tr>
+                        <tr><td>W;A</td><td>Diao</td><td>Com</td><td>7</td></tr>
+                        <tr><td>Pc</td><td>Zapata D.</td><td>Tor</td><td>25</td></tr>
+                        <tr><td>Pc</td><td>Scamacca</td><td>Ata</td><td>13</td></tr>
+                        <tr class="highlight-red"><td>Pc</td><td>Martinez L.</td><td>Int</td><td>198</td></tr>
+                        <tr><td>Pc</td><td>Dia</td><td>Laz</td><td>15</td></tr>
+                        <tr><td>W;A</td><td>Soule'</td><td>Rom</td><td>31</td></tr>
+                        <tr><td>A</td><td>Gudmundsson A.</td><td>Fio</td><td>39</td></tr>
+                        <tr><td>Pc</td><td>Douvikas</td><td>Com</td><td>11</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 180</p>
+            </div>
+
+            <div class="team-card">
+                <h2>DR academy</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Sommer</td><td>Int</td><td>36</td></tr>
+                        <tr><td>Por</td><td>Martinez Jo.</td><td>Int</td><td>2</td></tr>
+                        <tr><td>Por</td><td>Okoye</td><td>Udi</td><td>6</td></tr>
+                        <tr><td>Dc</td><td>Bastoni</td><td>Int</td><td>31</td></tr>
+                        <tr class="highlight-red"><td>B;Dd;E</td><td>Darmian</td><td>Int</td><td>26</td></tr>
+                        <tr><td>Dc</td><td>N'Dicka</td><td>Rom</td><td>17</td></tr>
+                        <tr class="highlight-red"><td>Dd;Ds;E</td><td>Zortea</td><td>Cag</td><td>6</td></tr>
+                        <tr><td>Dd;E</td><td>Celik</td><td>Rom</td><td>5</td></tr>
+                        <tr><td>Ds;E</td><td>Kamara H.</td><td>Udi</td><td>10</td></tr>
+                        <tr><td>Dc</td><td>Obert</td><td>Cag</td><td>9</td></tr>
+                        <tr><td>Dd;Dc</td><td>Vogliacco</td><td>Par</td><td>4</td></tr>
+                        <tr><td>Dc</td><td>Marianucci</td><td>Emp</td><td>8</td></tr>
+                        <tr><td>Dc</td><td>Jean</td><td>Lec</td><td>6</td></tr>
+                        <tr><td>M;C</td><td>Paredes</td><td>Rom</td><td>10</td></tr>
+                        <tr><td>W</td><td>El Shaarawy</td><td>Rom</td><td>13</td></tr>
+                        <tr><td>M;C</td><td>Mandragora</td><td>Fio</td><td>12</td></tr>
+                        <tr><td>C</td><td>Guendouzi</td><td>Laz</td><td>16</td></tr>
+                        <tr><td>M;C</td><td>Adopo</td><td>Cag</td><td>6</td></tr>
+                        <tr><td>M;C</td><td>Brescianini</td><td>Ata</td><td>8</td></tr>
+                        <tr><td>C</td><td>Sohm</td><td>Par</td><td>10</td></tr>
+                        <tr><td>W;A</td><td>Man</td><td>Par</td><td>64</td></tr>
+                        <tr><td>C</td><td>Pisilli</td><td>Rom</td><td>17</td></tr>
+                        <tr><td>W</td><td>Tete Morente</td><td>Lec</td><td>8</td></tr>
+                        <tr><td>M;C</td><td>Karlstrom</td><td>Udi</td><td>7</td></tr>
+                        <tr><td>A</td><td>Keita B.</td><td>Mon</td><td>17</td></tr>
+                        <tr><td>A</td><td>Thauvin</td><td>Udi</td><td>8</td></tr>
+                        <tr><td>Pc</td><td>Djuric</td><td>Par</td><td>40</td></tr>
+                        <tr class="highlight-red"><td>Pc</td><td>Castellanos</td><td>Laz</td><td>33</td></tr>
+                        <tr><td>A</td><td>Mbangula</td><td>Juv</td><td>11</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 73</p>
+            </div>
+
+            <div class="team-card">
+                <h2>Fc Scarpul</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Milinkovic-Savic V.</td><td>Tor</td><td>19</td></tr>
+                        <tr><td>Por</td><td>De Gea</td><td>Fio</td><td>11</td></tr>
+                        <tr><td>Por</td><td>Paleari</td><td>Tor</td><td>1</td></tr>
+                        <tr><td>Dd;E</td><td>Lazzari</td><td>Laz</td><td>8</td></tr>
+                        <tr class="highlight-red"><td>Dc</td><td>Mancini</td><td>Rom</td><td>23</td></tr>
+                        <tr><td>Ds;E</td><td>Martin</td><td>Gen</td><td>4</td></tr>
+                        <tr><td>B;Ds;E</td><td>Kolasinac</td><td>Ata</td><td>20</td></tr>
+                        <tr><td>Ds;E</td><td>Hernandez T.</td><td>Mil</td><td>21</td></tr>
+                        <tr><td>Dc</td><td>Pavlovic</td><td>Mil</td><td>12</td></tr>
+                        <tr><td>Dc</td><td>Coppola D.</td><td>Ver</td><td>6</td></tr>
+                        <tr><td>Dc</td><td>Leoni</td><td>Par</td><td>4</td></tr>
+                        <tr><td>Dc</td><td>Kempf</td><td>Com</td><td>7</td></tr>
+                        <tr><td>Dc</td><td>Valentini N.</td><td>Ver</td><td>3</td></tr>
+                        <tr><td>M;C</td><td>Cristante</td><td>Rom</td><td>15</td></tr>
+                        <tr><td>M;C</td><td>Rovella</td><td>Laz</td><td>12</td></tr>
+                        <tr><td>W;T</td><td>Elmas</td><td>Tor</td><td>14</td></tr>
+                        <tr><td>W</td><td>Strefezza</td><td>Com</td><td>16</td></tr>
+                        <tr><td>C;T</td><td>Helgason</td><td>Lec</td><td>8</td></tr>
+                        <tr><td>C;T</td><td>Fazzini</td><td>Emp</td><td>32</td></tr>
+                        <tr><td>C;T</td><td>Bernabe'</td><td>Par</td><td>43</td></tr>
+                        <tr><td>M;C</td><td>Atta</td><td>Udi</td><td>6</td></tr>
+                        <tr><td>Pc</td><td>Piccoli</td><td>Cag</td><td>16</td></tr>
+                        <tr class="highlight-red"><td>Pc</td><td>Thuram</td><td>Int</td><td>44</td></tr>
+                        <tr><td>W;A</td><td>Pierotti</td><td>Lec</td><td>12</td></tr>
+                        <tr><td>Pc</td><td>Castro S.</td><td>Bol</td><td>31</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 138</p>
+            </div>
+
+            <div class="team-card">
+                <h2>Salumificio Marchigiano SRLS</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Meret</td><td>Nap</td><td>15</td></tr>
+                        <tr class="highlight-red"><td>Por</td><td>Caprile</td><td>Cag</td><td>6</td></tr>
+                        <tr><td>Dc</td><td>Balogh</td><td>Par</td><td>3</td></tr>
+                        <tr><td>Dc</td><td>Scalvini</td><td>Ata</td><td>1</td></tr>
+                        <tr><td>Ds;E</td><td>Tavares N.</td><td>Laz</td><td>25</td></tr>
+                        <tr><td>Dc</td><td>Viti</td><td>Emp</td><td>5</td></tr>
+                        <tr class="highlight-red"><td>Dd;E</td><td>Dodo'</td><td>Fio</td><td>3</td></tr>
+                        <tr class="highlight-red"><td>Dc</td><td>Beukema</td><td>Bol</td><td>6</td></tr>
+                        <tr><td>Dd;Ds;E</td><td>Jimenez A.</td><td>Mil</td><td>17</td></tr>
+                        <tr><td>Dc</td><td>Giannetti L.</td><td>Udi</td><td>15</td></tr>
+                        <tr><td>Dd;Dc</td><td>Goglichidze</td><td>Emp</td><td>16</td></tr>
+                        <tr><td>T;A</td><td>Pulisic</td><td>Mil</td><td>47</td></tr>
+                        <tr><td>M;C</td><td>Fofana Y.</td><td>Mil</td><td>20</td></tr>
+                        <tr><td>M;C</td><td>McTominay</td><td>Nap</td><td>45</td></tr>
+                        <tr><td>T;A</td><td>Maldini</td><td>Ata</td><td>10</td></tr>
+                        <tr><td>C</td><td>Caqueret</td><td>Com</td><td>10</td></tr>
+                        <tr><td>M;C</td><td>Prati</td><td>Cag</td><td>3</td></tr>
+                        <tr><td>W;T</td><td>Ibrahimovic A.</td><td>Laz</td><td>4</td></tr>
+                        <tr><td>C;T</td><td>Dele-Bashiru</td><td>Laz</td><td>5</td></tr>
+                        <tr><td>W;T</td><td>Liberali</td><td>Mil</td><td>2</td></tr>
+                        <tr><td>C;T</td><td>Ekkelenkamp</td><td>Udi</td><td>10</td></tr>
+                        <tr><td>C;T</td><td>Billing</td><td>Nap</td><td>6</td></tr>
+                        <tr><td>A</td><td>Cambiaghi</td><td>Bol</td><td>12</td></tr>
+                        <tr><td>W;A</td><td>Ngonge</td><td>Nap</td><td>2</td></tr>
+                        <tr><td>W;A</td><td>Isaksen</td><td>Laz</td><td>15</td></tr>
+                        <tr><td>A</td><td>Adams C.</td><td>Tor</td><td>37</td></tr>
+                        <tr><td>A</td><td>Lambourde</td><td>Ver</td><td>2</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 332</p>
+            </div>
+
+            <div class="team-card">
+                <h2>Cobra Kai</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Sportiello</td><td>Mil</td><td>1</td></tr>
+                        <tr><td>Por</td><td>Maignan</td><td>Mil</td><td>34</td></tr>
+                        <tr><td>Por</td><td>Torriani</td><td>Mil</td><td>1</td></tr>
+                        <tr><td>Dc</td><td>De Vrij</td><td>Int</td><td>7</td></tr>
+                        <tr class="highlight-red"><td>Dc</td><td>Acerbi</td><td>Int</td><td>21</td></tr>
+                        <tr><td>E</td><td>Zappacosta</td><td>Ata</td><td>8</td></tr>
+                        <tr><td>E</td><td>Lazaro</td><td>Tor</td><td>9</td></tr>
+                        <tr><td>Dc</td><td>Gabbia</td><td>Mil</td><td>3</td></tr>
+                        <tr><td>Ds;E</td><td>Augello</td><td>Cag</td><td>9</td></tr>
+                        <tr><td>Ds;E</td><td>Kyriakopoulos</td><td>Mon</td><td>6</td></tr>
+                        <tr><td>Dc</td><td>Tomori</td><td>Mil</td><td>11</td></tr>
+                        <tr><td>Ds;E</td><td>Angelino</td><td>Rom</td><td>9</td></tr>
+                        <tr><td>Dc</td><td>Lucumi'</td><td>Bol</td><td>5</td></tr>
+                        <tr><td>Dd;E</td><td>Ehizibue</td><td>Udi</td><td>9</td></tr>
+                        <tr><td>Dd;E</td><td>Tchatchoua</td><td>Ver</td><td>8</td></tr>
+                        <tr><td>Dd;E</td><td>Van Der Brempt</td><td>Com</td><td>5</td></tr>
+                        <tr><td>C;T</td><td>Viola</td><td>Cag</td><td>9</td></tr>
+                        <tr><td>C;T</td><td>Pellegrini Lo.</td><td>Rom</td><td>36</td></tr>
+                        <tr class="highlight-red"><td>C</td><td>Mkhitaryan</td><td>Int</td><td>15</td></tr>
+                        <tr><td>W</td><td>Weah</td><td>Juv</td><td>22</td></tr>
+                        <tr><td>M;C</td><td>Bianco</td><td>Mon</td><td>13</td></tr>
+                        <tr><td>W</td><td>Ndoye</td><td>Bol</td><td>9</td></tr>
+                        <tr><td>C;W</td><td>Ellertsson</td><td>Ven</td><td>13</td></tr>
+                        <tr><td>M;C</td><td>Belahyane</td><td>Laz</td><td>6</td></tr>
+                        <tr><td>W;T</td><td>Suslov</td><td>Ver</td><td>6</td></tr>
+                        <tr><td>Pc</td><td>Pinamonti</td><td>Gen</td><td>19</td></tr>
+                        <tr><td>A</td><td>Sarr A.</td><td>Ver</td><td>14</td></tr>
+                        <tr class="highlight-red"><td>Pc</td><td>Retegui</td><td>Ata</td><td>89</td></tr>
+                        <tr><td>Pc</td><td>Fila</td><td>Ven</td><td>8</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 48</p>
+            </div>
+
+            <div class="team-card">
+                <h2>AC Piadeina</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Provedel</td><td>Laz</td><td>22</td></tr>
+                        <tr><td>Por</td><td>Mandas</td><td>Laz</td><td>1</td></tr>
+                        <tr><td>Dc</td><td>Izzo</td><td>Mon</td><td>8</td></tr>
+                        <tr><td>Dc</td><td>Goldaniga</td><td>Com</td><td>7</td></tr>
+                        <tr><td>E</td><td>Gosens</td><td>Fio</td><td>24</td></tr>
+                        <tr class="highlight-red"><td>Dc</td><td>Buongiorno</td><td>Nap</td><td>19</td></tr>
+                        <tr><td>E</td><td>Bellanova</td><td>Ata</td><td>24</td></tr>
+                        <tr><td>Ds;Dc</td><td>Carboni A.</td><td>Mon</td><td>5</td></tr>
+                        <tr><td>Dc</td><td>Svoboda</td><td>Ven</td><td>6</td></tr>
+                        <tr class="highlight-red"><td>E</td><td>Dumfries</td><td>Int</td><td>15</td></tr>
+                        <tr><td>Dc</td><td>Pongracic</td><td>Fio</td><td>14</td></tr>
+                        <tr><td>Dd;Dc</td><td>De Winter</td><td>Gen</td><td>11</td></tr>
+                        <tr><td>Dc</td><td>Bisseck</td><td>Int</td><td>12</td></tr>
+                        <tr><td>Dc</td><td>Coco</td><td>Tor</td><td>16</td></tr>
+                        <tr><td>M;C</td><td>Calhanoglu</td><td>Int</td><td>30</td></tr>
+                        <tr><td>C;T</td><td>Frattesi</td><td>Int</td><td>17</td></tr>
+                        <tr><td>M;C</td><td>McKennie</td><td>Juv</td><td>18</td></tr>
+                        <tr><td>M;C</td><td>Pobega</td><td>Bol</td><td>4</td></tr>
+                        <tr><td>M;C</td><td>Thuram K.</td><td>Juv</td><td>44</td></tr>
+                        <tr class="highlight-red"><td>E;M</td><td>Frendrup</td><td>Gen</td><td>7</td></tr>
+                        <tr><td>C;T</td><td>Casadei</td><td>Tor</td><td>30</td></tr>
+                        <tr><td>T;A</td><td>Paz N.</td><td>Com</td><td>7</td></tr>
+                        <tr><td>Pc</td><td>Lukaku</td><td>Nap</td><td>49</td></tr>
+                        <tr><td>A</td><td>Esposito Se.</td><td>Emp</td><td>11</td></tr>
+                        <tr class="highlight-red"><td>A</td><td>Lookman</td><td>Ata</td><td>18</td></tr>
+                        <tr><td>A</td><td>Bravo</td><td>Udi</td><td>4</td></tr>
+                        <tr><td>Pc</td><td>Bonny</td><td>Par</td><td>13</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 195</p>
+            </div>
+
+            <div class="team-card">
+                <h2>Red Devils</h2>
+                <table class="roster-table">
+                    <thead><tr><th>Ruolo</th><th>Calciatore</th><th>Squadra</th><th>Costo</th></tr></thead>
+                    <tbody>
+                        <tr><td>Por</td><td>Skorupski</td><td>Bol</td><td>11</td></tr>
+                        <tr><td>Por</td><td>Ravaglia F.</td><td>Bol</td><td>1</td></tr>
+                        <tr><td>Por</td><td>Bagnolini</td><td>Bol</td><td>1</td></tr>
+                        <tr><td>Ds;Dc</td><td>Juan Jesus</td><td>Nap</td><td>5</td></tr>
+                        <tr><td>Dd;E</td><td>Calabria</td><td>Bol</td><td>5</td></tr>
+                        <tr><td>Dd;Ds;E</td><td>Marusic</td><td>Laz</td><td>11</td></tr>
+                        <tr><td>E;M</td><td>Sergi Roberto</td><td>Com</td><td>10</td></tr>
+                        <tr><td>Ds;Dc</td><td>Ranieri L.</td><td>Fio</td><td>8</td></tr>
+                        <tr><td>Dc</td><td>Maripan</td><td>Tor</td><td>6</td></tr>
+                        <tr><td>Dd;Dc</td><td>Kalulu</td><td>Juv</td><td>5</td></tr>
+                        <tr class="highlight-red"><td>Dd;Ds;E</td><td>Cambiaso</td><td>Juv</td><td>8</td></tr>
+                        <tr><td>Dc</td><td>Bijol</td><td>Udi</td><td>5</td></tr>
+                        <tr><td>M;C</td><td>De Roon</td><td>Ata</td><td>8</td></tr>
+                        <tr><td>M;C</td><td>Badelj</td><td>Gen</td><td>6</td></tr>
+                        <tr><td>M;C</td><td>Cataldi</td><td>Fio</td><td>3</td></tr>
+                        <tr><td>C;T</td><td>Pasalic</td><td>Ata</td><td>16</td></tr>
+                        <tr><td>T</td><td>Gaetano</td><td>Cag</td><td>8</td></tr>
+                        <tr><td>W</td><td>Saelemaekers</td><td>Rom</td><td>6</td></tr>
+                        <tr><td>M;C</td><td>Coulibaly L.</td><td>Lec</td><td>6</td></tr>
+                        <tr><td>W;T</td><td>Da Cunha</td><td>Com</td><td>23</td></tr>
+                        <tr><td>M;C</td><td>Asllani</td><td>Int</td><td>8</td></tr>
+                        <tr><td>C;T</td><td>Miretti</td><td>Gen</td><td>4</td></tr>
+                        <tr><td>Pc</td><td>Sanabria</td><td>Tor</td><td>9</td></tr>
+                        <tr><td>Pc</td><td>Milik</td><td>Juv</td><td>10</td></tr>
+                        <tr><td>Pc</td><td>Cutrone</td><td>Com</td><td>14</td></tr>
+                        <tr><td>Pc</td><td>Abraham</td><td>Mil</td><td>13</td></tr>
+                        <tr class="highlight-red"><td>Pc</td><td>Vlahovic</td><td>Juv</td><td>68</td></tr>
+                        <tr><td>A</td><td>Yildiz</td><td>Juv</td><td>73</td></tr>
+                    </tbody>
+                </table>
+                <p class="credits">Crediti Residui: 20</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>PolistenaCup | Regolamento Ufficiale</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-toggle');
+            const mainNav = document.getElementById('main-nav');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+            // Toggle hamburger menu
+            hamburger.addEventListener('click', (event) => {
+                mainNav.classList.toggle('active');
+                event.stopPropagation();
+            });
+
+            // Handle dropdowns on mobile
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (event) => {
+                    if (window.innerWidth <= 768) {
+                        event.preventDefault();
+                        const dropdown = toggle.nextElementSibling;
+                        dropdown.classList.toggle('open');
+                        event.stopPropagation();
+                    }
+                });
+            });
+
+            // Close menus when clicking outside
+            document.addEventListener('click', (event) => {
+                if (mainNav && !mainNav.contains(event.target) && hamburger && !hamburger.contains(event.target)) {
+                    mainNav.classList.remove('active');
+                    document.querySelectorAll('.dropdown.open').forEach(dropdown => {
+                        dropdown.classList.remove('open');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
