@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PolistenaCup - Trasferimenti di Mercato</title>
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #58A6FF;
+      --secondary-color: #161B22;
+      --accent-color: #58A6FF;
+      --text-color: #E6EDF3;
+      --bg-color: #161B22;
+      --card-bg-color: #1C2128;
+      --border-color: #30363d;
+      --success-color: #2ea44f;
+      --danger-color: #f85149;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(rgba(28, 33, 40, 0.85), rgba(22, 27, 34, 0.95)), url('https://placehold.co/1200x400/161B22/58A6FF?text=PolistenaCup') no-repeat center center/cover;
+      color: #ffffff;
+      padding: 4rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid var(--accent-color);
+    }
+
+    header h1 {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    /* Barra di Navigazione */
+    nav {
+      background-color: rgba(28, 33, 40, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      min-height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 0.8rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      display: block;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus,
+    nav ul li a.active {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .card h2 {
+      font-family: 'Oswald', sans-serif;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #8b949e;
+    }
+
+    .form-control {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-color);
+      padding: 0.6rem 0.8rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      font-weight: bold;
+      font-size: 0.95rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      border: 1px solid rgba(27, 31, 36, 0.15);
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background-color: var(--success-color);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #2c974b;
+    }
+
+    .btn-secondary {
+      background-color: #21262d;
+      color: #c9d1d9;
+      border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background-color: #30363d;
+      border-color: #8b949e;
+    }
+
+    .btn-danger {
+      background-color: transparent;
+      color: var(--danger-color);
+      border: 1px solid rgba(248, 81, 73, 0.4);
+      padding: 0.3rem 0.6rem;
+      font-size: 0.85rem;
+      border-radius: 4px;
+    }
+
+    .btn-danger:hover {
+      background-color: var(--danger-color);
+      color: #ffffff;
+      border-color: var(--danger-color);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .table th,
+    .table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .table th {
+      background-color: rgba(48, 54, 61, 0.2);
+      color: #8b949e;
+      font-weight: bold;
+    }
+
+    .table tbody tr:hover {
+      background-color: rgba(48, 54, 61, 0.1);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      background-color: #30363d;
+      color: #c9d1d9;
+    }
+
+    .badge-team {
+      background-color: rgba(88, 166, 255, 0.15);
+      color: var(--primary-color);
+    }
+
+    .badge-svincolato {
+      background-color: rgba(248, 81, 73, 0.15);
+      color: var(--danger-color);
+    }
+
+    .actions-cell {
+      text-align: center;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .no-records {
+      text-align: center;
+      padding: 2rem;
+      color: #8b949e;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>PolistenaCup</h1>
+    <p>Calciomercato Live & Trasferimenti</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Regolamento</a></li>
+      <li><a href="rose_vecchie.html">Rose 25/26</a></li>
+      <li><a href="trasferimenti.html" class="active">Trasferimenti</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="grid-layout">
+      <!-- Sinistra: Form Inserimento -->
+      <div>
+        <div class="card">
+          <h2><i class="fas fa-exchange-alt"></i> Nuovo Trasferimento</h2>
+          <form id="transferForm">
+            <div class="form-group">
+              <label for="calciatore">Calciatore *</label>
+              <input type="text" id="calciatore" class="form-control" placeholder="Es: Nico Paz" required>
+            </div>
+
+            <div class="form-group">
+              <label for="daTeam">Da *</label>
+              <select id="daTeam" class="form-control" required>
+                <option value="" disabled selected>Seleziona squadra d'origine</option>
+                <option value="Svincolato">Svincolato</option>
+                <option value="AC Piadeina">AC Piadeina</option>
+                <option value="All Blacks">All Blacks</option>
+                <option value="Building Co. Laundry FC">Building Co. Laundry FC</option>
+                <option value="DR Academy calcio">DR Academy calcio</option>
+                <option value="Fc Scarpul">Fc Scarpul</option>
+                <option value="Longobarda">Longobarda</option>
+                <option value="Red Devils">Red Devils</option>
+                <option value="Rumbuli Team">Rumbuli Team</option>
+                <option value="Salumificio Marchigiano SRLS">Salumificio Marchigiano SRLS</option>
+                <option value="Segname Mucho Meno">Segname Mucho Meno</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="aTeam">A *</label>
+              <select id="aTeam" class="form-control" required>
+                <option value="" disabled selected>Seleziona squadra destinataria</option>
+                <option value="Svincolato">Svincolato</option>
+                <option value="AC Piadeina">AC Piadeina</option>
+                <option value="All Blacks">All Blacks</option>
+                <option value="Building Co. Laundry FC">Building Co. Laundry FC</option>
+                <option value="DR Academy calcio">DR Academy calcio</option>
+                <option value="Fc Scarpul">Fc Scarpul</option>
+                <option value="Longobarda">Longobarda</option>
+                <option value="Red Devils">Red Devils</option>
+                <option value="Rumbuli Team">Rumbuli Team</option>
+                <option value="Salumificio Marchigiano SRLS">Salumificio Marchigiano SRLS</option>
+                <option value="Segname Mucho Meno">Segname Mucho Meno</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="costo">Costo Trasferimento (crediti)</label>
+              <input type="number" id="costo" class="form-control" placeholder="Es: 40 (lascia vuoto se gratuito)" min="0">
+            </div>
+
+            <div class="form-group">
+              <label for="clausole">Clausole / Note</label>
+              <input type="text" id="clausole" class="form-control" placeholder="Es: Diritto di riscatto, recompra...">
+            </div>
+
+            <div class="form-group">
+              <label for="stipendio">Nuovo Stipendio (crediti) *</label>
+              <input type="number" id="stipendio" class="form-control" placeholder="Es: 11" min="1" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fas fa-plus"></i> Inserisci Record
+            </button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2><i class="fas fa-file-export"></i> Gestione Dati</h2>
+          <p style="font-size: 0.85rem; color: #8b949e; margin-top: 0;">
+            I dati sono salvati localmente nel tuo browser. Puoi esportarli per salvarli in modo definitivo o condividerli.
+          </p>
+          <div class="btn-group">
+            <button id="btnExportJSON" class="btn btn-secondary" style="flex: 1;">
+              <i class="fas fa-code"></i> JSON
+            </button>
+            <button id="btnExportCSV" class="btn btn-secondary" style="flex: 1;">
+              <i class="fas fa-file-csv"></i> CSV
+            </button>
+          </div>
+          <button id="btnReset" class="btn btn-secondary" style="width: 100%; margin-top: 1rem; border-color: rgba(248, 81, 73, 0.4); color: var(--danger-color);">
+            <i class="fas fa-undo"></i> Ripristina record iniziali
+          </button>
+        </div>
+      </div>
+
+      <!-- Destra: Tabella Trasferimenti -->
+      <div>
+        <div class="card" style="height: calc(100% - 2rem); display: flex; flex-direction: column;">
+          <h2><i class="fas fa-list"></i> Cronologia Trasferimenti</h2>
+          <div class="table-container" style="flex: 1;">
+            <table class="table" id="transfersTable">
+              <thead>
+                <tr>
+                  <th>Calciatore</th>
+                  <th>Da</th>
+                  <th>A</th>
+                  <th class="text-right">Costo trasf.</th>
+                  <th>Clausole</th>
+                  <th class="text-right">Nuovo stipendio</th>
+                  <th class="text-center" style="width: 50px;">Azioni</th>
+                </tr>
+              </thead>
+              <tbody id="transfersBody">
+                <!-- Record inseriti dinamicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Record predefiniti richiesti
+    const defaultTransfers = [
+      {
+        id: "1",
+        calciatore: "Nico Paz",
+        da: "AC Piadeina",
+        a: "Longobarda",
+        costo: 40,
+        clausole: "",
+        stipendio: 11
+      },
+      {
+        id: "2",
+        calciatore: "Zaniolo",
+        da: "Longobarda",
+        a: "AC Piadeina",
+        costo: null,
+        clausole: "",
+        stipendio: 28
+      }
+    ];
+
+    let transfers = [];
+
+    function initData() {
+      const stored = localStorage.getItem('polistenacup_transfers');
+      if (stored) {
+        try {
+          transfers = JSON.parse(stored);
+        } catch (e) {
+          transfers = [...defaultTransfers];
+        }
+      } else {
+        transfers = [...defaultTransfers];
+        saveData();
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem('polistenacup_transfers', JSON.stringify(transfers));
+    }
+
+    function getTeamBadge(teamName) {
+      if (teamName === 'Svincolato') {
+        return `<span class="badge badge-svincolato">${teamName}</span>`;
+      }
+      return `<span class="badge badge-team">${teamName}</span>`;
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('transfersBody');
+      tbody.innerHTML = '';
+
+      if (transfers.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="no-records">Nessun trasferimento registrato.</td></tr>`;
+        return;
+      }
+
+      transfers.forEach(t => {
+        const tr = document.createElement('tr');
+        
+        const costoText = t.costo !== null && t.costo !== undefined && t.costo !== '' ? `${t.costo} cr` : '-';
+        const clausoleText = t.clausole ? t.clausole : '-';
+
+        tr.innerHTML = `
+          <td><strong>${t.calciatore}</strong></td>
+          <td>${getTeamBadge(t.da)}</td>
+          <td>${getTeamBadge(t.a)}</td>
+          <td class="text-right">${costoText}</td>
+          <td>${clausoleText}</td>
+          <td class="text-right" style="color: var(--primary-color); font-weight: bold;">${t.stipendio} cr</td>
+          <td class="actions-cell">
+            <button class="btn btn-danger" onclick="deleteTransfer('${t.id}')" title="Elimina record">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function addTransfer(event) {
+      event.preventDefault();
+      
+      const calciatore = document.getElementById('calciatore').value.trim();
+      const da = document.getElementById('daTeam').value;
+      const a = document.getElementById('aTeam').value;
+      const costoVal = document.getElementById('costo').value;
+      const costo = costoVal !== '' ? parseInt(costoVal) : null;
+      const clausole = document.getElementById('clausole').value.trim();
+      const stipendio = parseInt(document.getElementById('stipendio').value);
+
+      if (da === a) {
+        alert("La squadra di origine e destinazione non possono coincidere!");
+        return;
+      }
+
+      const newTransfer = {
+        id: Date.now().toString(),
+        calciatore,
+        da,
+        a,
+        costo,
+        clausole,
+        stipendio
+      };
+
+      transfers.push(newTransfer);
+      saveData();
+      renderTable();
+
+      // Reset form
+      document.getElementById('transferForm').reset();
+      document.getElementById('daTeam').selectedIndex = 0;
+      document.getElementById('aTeam').selectedIndex = 0;
+    }
+
+    function deleteTransfer(id) {
+      if (confirm("Sei sicuro di voler eliminare questo record?")) {
+        transfers = transfers.filter(t => t.id !== id);
+        saveData();
+        renderTable();
+      }
+    }
+
+    function resetToDefaults() {
+      if (confirm("Sei sicuro di voler ripristinare i record iniziali? Questo cancellerà tutti i trasferimenti inseriti da te.")) {
+        transfers = [...defaultTransfers];
+        saveData();
+        renderTable();
+      }
+    }
+
+    function exportJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(transfers, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "trasferimenti_polistenacup.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function exportCSV() {
+      let csvContent = "data:text/csv;charset=utf-8,";
+      csvContent += "Calciatore,Da,A,Costo Trasferimento,Clausole,Nuovo Stipendio\n";
+      
+      transfers.forEach(t => {
+        const costo = t.costo !== null ? t.costo : "";
+        const row = `"${t.calciatore}","${t.da}","${t.a}","${costo}","${t.clausole.replace(/"/g, '""')}","${t.stipendio}"`;
+        csvContent += row + "\n";
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", encodedUri);
+      downloadAnchor.setAttribute("download", "trasferimenti_polistenacup.csv");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    // Event Listeners
+    document.getElementById('transferForm').addEventListener('submit', addTransfer);
+    document.getElementById('btnReset').addEventListener('click', resetToDefaults);
+    document.getElementById('btnExportJSON').addEventListener('click', exportJSON);
+    document.getElementById('btnExportCSV').addEventListener('click', exportCSV);
+
+    // Run on init
+    initData();
+    renderTable();
+  </script>
+</body>
+
+</html>
